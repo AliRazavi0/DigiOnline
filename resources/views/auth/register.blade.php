@@ -37,10 +37,10 @@
 
                     <div class="form-account-title">
                         <label for="mobile">شماره موبایل</label>
-                        <input class="number-email-input @error('mobile') is-invalid @enderror" id="mobile" type="text"
+                        <input maxlength="11" class="number-email-input @error('mobile') is-invalid @enderror" id="mobile" type="text"
                                name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus
-                               placeholder="نام کاربری خود را وارد کنید ...">
-                        <span class="mdi mdi-account-outline"></span>
+                               placeholder="شماره موبایل خود را وارد کنید ...">
+                        <span class="mdi mdi-phone"></span>
 
 
                         @error('mobile')
@@ -54,7 +54,7 @@
                         <input class="number-email-input @error('email') is-invalid @enderror" id="email" type="email"
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
                             placeholder="ایمیل خود را وارد کنید ...">
-                        <span class="mdi mdi-account-outline"></span>
+                        <span class="mdi mdi-email"></span>
 
 
                         @error('email')
@@ -95,6 +95,11 @@
                     <div class="forget-password">
                         <a href="{{ route('password.request') }}" class="account-link-password">رمز خود را فراموش کرده
                             ام</a>
+                    </div>
+
+                    <div class="forget-password mt-3">
+                        <a href="{{ route('google.auth') }}" class="btn btn-sm btn-danger">ورود با گوگل
+                            </a>
                     </div>
                 </form>
             </div>

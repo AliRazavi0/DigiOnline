@@ -20,3 +20,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/test', function () {
+    \Illuminate\Support\Facades\Auth::logout();
+});
+
+
+Route::prefix('auth')->namespace('Auth')->group(function () {
+    Route::prefix('google')->group(function () {
+        Route::get('', 'GoogleController@redirect')->name('google.auth');
+        Route::get('callback', 'GoogleController@callback')->name('google.callback');
+    });
+
+});
