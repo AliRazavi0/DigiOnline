@@ -17,8 +17,11 @@ class GoogleController extends Controller
 
     public function callback()
     {
+
+
         try {
             $googleUser = Socialite::driver('google')->user();
+
 
             $user = User::where('email', $googleUser->email)->first();
 
@@ -38,7 +41,8 @@ class GoogleController extends Controller
 
             return redirect(route('home'));
         } catch (\Exception $exception) {
-            echo "Error" . $exception->getMessage();
+            alert()->error('مشکل در عملیات ورود با گوگل','پیغام خطا')->persistent('فهمیدم');
+            return  redirect(route('login'));
         }
     }
 }
