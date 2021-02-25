@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -6,91 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
     name='viewport'/>
-    <title>login</title>
-    <!--    font------------------------------------>
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/materialdesignicons.css">
-    <link rel="stylesheet" href="assets/css/materialdesignicons.css.map">
-    <!--    bootstrap------------------------------->
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <!--    owl.carousel---------------------------->
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <!--    responsive------------------------------>
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <!--    main style------------------------------>
-    <link rel="stylesheet" href="assets/css/main.css">
+
+    <title>
+        @yield('title')
+    </title>
+
+
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @yield('css')
 </head>
 <body>
-<!--page-login-------------------------->
+
         <div class="container-main">
             <div class="col-12">
                 <div class="semi-modal-layout">
-                    <section class="page-account-box">
-                        <div class="col-lg-7 col-md-7 col-xs-12 mx-auto">
-                            <div class="account-box">
-                                <a href="#" class="account-box-logo">digistore</a>
-                                <div class="account-box-headline">
-                                    <a href="login.html" class="login-ds active-account">ورود</a>
-                                    <a href="register.html" class="register-ds">ثبت نام</a>
-                                </div>
-                                <div class="account-box-content">
-                                    <form action="#" class="form-account">
-                                        <div class="form-account-title">
-                                            <label for="email-phone">ایمیل / شماره موبایل</label>
-                                            <input type="text" class="number-email-input" id="email-phone" placeholder="ایمیل یا شماره موبایل خود را وارد نمایید">
-                                            <span class="mdi mdi-account-outline"></span>
-                                        </div>
-                                        <div class="form-account-title">
-                                            <label for="password">رمز عبور</label>
-                                            <input type="password" class="password-input" placeholder="رمز عبور خود را وارد نمایید">
-                                            <span class="mdi mdi-lock"></span>
-                                        </div>
-                                        <div class="form-auth-row">
-                                            <label for="#" class="ui-checkbox">
-                                                <input type="checkbox" value="1" name="login" checked="" id="remember">
-                                                <span class="ui-checkbox-check"></span>
-                                            </label>
-                                            <label for="remember" class="remember-me">مرا به خاطر داشته باش</label>
-                                        </div>
-                                        <div class="parent-btn lr-ds">
-                                            <button class="dk-btn dk-btn-info">
-                                                    ورود به دیجی اسمارت
-                                                <i class="fa fa-sign-in sign-in"></i>
-                                            </button>
-                                        </div>
-                                        <div class="forget-password">
-                                            <a href="#" class="account-link-password">رمز خود را فراموش کرده ام</a>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <footer class="footer-light">
-                        <div class="container">
-                            <ul class="footer-light-link">
-                                <li><a href="#">درباره دیجی اسمارت</a></li>
-                                <li><a href="#">فرصت‌های شغلی</a></li>
-                                <li><a href="#">تماس با ما</a></li>
-                                <li><a href="#">همکاری با سازمان‌ها</a></li>
-                            </ul>
-
-                            <p class="title-footer">استفاده از مطالب فروشگاه اینترنتی دیجی‌اسمارت فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران فن آوازه (فروشگاه آنلاین دیجی‌اسمارت) می‌باشد.</p>
-
-                            <p class="copy-right-footer-light">Copyright © 2006 - 2019 DigiSmart.com</p>
-                        </div>
-                    </footer>
+                    @yield('content')
+                    @include('layouts.footer')
                 </div>
             </div>
         </div>
-<!--page-login-------------------------->
+
 </body>
-<!--jquery--------------------------------------->
-<script src="assets/js/jquery-3.2.1.min.js"></script>
-<!--    bootstrap-------------------------------->
-<script src="assets/js/bootstrap.js"></script>
-<!--    owl.carousel----------------------------->
-<script src="assets/js/owl.carousel.min.js"></script>
+
 <!--main----------------------------------------->
-<script src="assets/js/main.js"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </html>
