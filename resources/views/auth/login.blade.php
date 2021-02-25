@@ -17,6 +17,7 @@
                 </div>
                 <div class="account-box-content">
                     <form action="{{ route('login') }}" class="form-account" method="POST">
+                        @csrf
                         <div class="form-account-title">
                             <label for="email">ایمیل </label>
                             <input class="number-email-input @error('email') is-invalid @enderror" id="email" type="email"
