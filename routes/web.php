@@ -17,7 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes([
+    'verify'=>true
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -33,4 +35,9 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
         Route::get('callback', 'GoogleController@callback')->name('google.callback');
     });
 
+});
+
+
+Route::prefix('/profile')->namespace('Website')->middleware(['verified'])->group(function (){
+    Route::get('','ProfileController@index')->name('profile.index');
 });

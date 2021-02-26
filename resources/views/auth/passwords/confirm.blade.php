@@ -1,49 +1,48 @@
 @extends('layouts.app')
-
+@section('title','تایید پسورد ')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+    <section class="page-account-box">
+        <div class="col-lg-7 col-md-7 col-xs-12 mx-auto">
+            <div class="account-box">
+                <a href="#" class="account-box-logo">
+                    {{ config('app.name') }}
+                </a>
 
-                <div class="card-body">
-                    {{ __('Please confirm your password before continuing.') }}
-
-                    <form method="POST" action="{{ route('password.confirm') }}">
+                <div class="account-box-content">
+                    <div class="alert alert-info">
+                        برای دسترسی به این آدرس باید پسورد خود را تایید فرمایید . با تشکر
+                    </div>
+                    <form method="POST" action="{{ route('password.confirm') }}" class="form-account" >
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <div class="form-account-title">
+                            <label for="password">رمز عبور</label>
+                            <input type="password" class="password-input @error('password') is-invalid @enderror"
+                                   name="password" required autocomplete="current-password"
+                                   placeholder="رمز عبور خود را وارد کنید ...">
+                            <span class="mdi mdi-lock"></span>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
+                        <div class="parent-btn lr-ds">
+                            <button class="dk-btn dk-btn-info">
+                                تایید پسورد
+                                <i class="fa fa-sign-in sign-in"></i>
+                            </button>
+                        </div>
+                        <div class="forget-password">
+                            <a href="{{ route('password.request') }}" class="account-link-password">رمز خود را فراموش کرده
+                                ام</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 @endsection
+
