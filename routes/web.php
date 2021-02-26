@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Auth::routes([
-    'verify'=>true
+    'verify' => true
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -38,6 +38,15 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
 });
 
 
-Route::prefix('/profile')->namespace('Website')->middleware(['verified'])->group(function (){
-    Route::get('','ProfileController@index')->name('profile.index');
+Route::prefix('/profile')->namespace('Website')->middleware(['verified'])->group(function () {
+    Route::namespace('Profile')->group(function () {
+        Route::get('', 'ProfileController@index')->name('profile.index');
+        Route::prefix('twofactorauth')->group(function () {
+            Route::get('', 'TwoFactorAuthController@showManagmentTwoFactorView')->name('management.2fa.view');
+            Route::post('', 'TwoFactorAuthController@PostManagmentTwoFactorView')->name('management.2fa');
+            Route::get('/code', 'TwoFactorAuthController@getViewVerifyCode')->name('management.2fa.view.code');
+            Route::post('/code', 'TwoFactorAuthController@postVerifyCode')->name('management.2fa.code');
+        });
+    });
+
 });

@@ -44,11 +44,14 @@
                             </div>
                         </div>
                     </div>
+
+
+
                     <div class="box-sidebar">
                         <span class="box-header-sidebar">حساب کاربری شما</span>
                         <ul class="profile-menu-items">
                             <li>
-                                <a href="#" class="profile-menu-url active-profile">
+                                <a href="{{route('profile.index')}}" class="profile-menu-url {{request()->path() === 'profile' ? 'active-profile' : ''}}">
                                     <span class="mdi mdi-account-outline"></span>
                                     پروفایل</a>
                             </li>
@@ -86,6 +89,12 @@
                                 <a href="#" class="profile-menu-url">
                                     <span class="mdi mdi-account-outline"></span>
                                     اطلاعات شخصی</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('management.2fa.view')}}" class="profile-menu-url {{request()->path() === 'profile/twofactorauth' ? 'active-profile' : ''}}">
+                                    <span class="mdi mdi-account-settings"></span>
+                                    تنظیمات اکانت کاربری</a>
                             </li>
                         </ul>
                     </div>
