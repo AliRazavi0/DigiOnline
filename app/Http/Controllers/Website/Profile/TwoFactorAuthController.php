@@ -19,11 +19,10 @@ class TwoFactorAuthController extends Controller
 
         if ($data['type'] === 'sms') {
             if (auth()->user()->mobile !== $data['mobile']) {
-                $code=Code::generateCode(auth()->user());
-
-               return $code;
-
-                return  redirect(route('management.2fa.view.code'));
+                $code = Code::generateCode(auth()->user());
+                session()->flash('mobile', $data['mobile']);
+                alert()->success("کد شما برابر است با : $code")->persistent('بسیار خب ') ;
+                return redirect(route('management.2fa.view.code'));
             } else {
                 auth()->user()->update([
                     'type' => "sms"
@@ -46,13 +45,31 @@ class TwoFactorAuthController extends Controller
 
     public function getViewVerifyCode()
     {
-        return view('auth.verify-code');
+        if (!session()->has('mobile')) {
+            return redirect(route('management.2fa.view'));
+        }
+        session()->reflash();
+        return view('auth.verify-code')->with('mobile', session()->get('mobile'));
     }
 
     public function postVerifyCode(Request $request)
     {
-       $codes=implode('', $request->code);
-       dd($codes);
+        $codes = implode('', $request->code);
+
+
+        $status = Code::checkCodeValidationUser($codes, auth()->user());
+
+        if ($status) {
+            auth()->user()->codes()->delete();
+            auth()->user()->update([
+                'mobile' => session()->get('mobile'),
+                'type' => 'sms'
+            ]);
+
+            return redirect(route('management.2fa.view'))->with('success', 'عملیات شما با موفقیت انجام گرفت .');
+        }
+
+        return redirect(route('management.2fa.view'))->with('error', 'عملیات شما با خطا مواجه شد .');
     }
 
     protected function validation(Request $request)
@@ -62,7 +79,6 @@ class TwoFactorAuthController extends Controller
             'mobile' => 'required_unless:type,off'
         ]);
     }
-
 
 
 }

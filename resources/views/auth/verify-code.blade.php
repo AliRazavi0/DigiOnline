@@ -13,9 +13,9 @@
                 <div class="account-box-content">
                     <div class="message-light">
                         <div class="massege-light-send">
-                            برای شماره همراه 09999999999 کد تایید ارسال گردید
+                            برای شماره همراه {{$mobile}} کد تایید ارسال گردید
                             <div class="form-edit-number">
-                                <a href="#" class="edit-number-link">ویرایش شماره</a>
+                                <a href="{{route('management.2fa.view')}}" class="edit-number-link">ویرایش شماره</a>
                             </div>
                         </div>
                         <form action="" method="POST">

@@ -34,6 +34,12 @@ class Code extends Model
         return $code;
     }
 
+    public function scopeCheckCodeValidationUser($query,$code,User $user)
+    {
+
+        return !! $user->codes()->whereCode($code)->where('expired_at','>',now())->first();
+    }
+
 
     private function checkCodeIsLive(User $user)
     {
