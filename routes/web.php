@@ -45,7 +45,7 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
 Route::prefix('/profile')->namespace('Website')->middleware(['verified'])->group(function () {
     Route::namespace('Profile')->group(function () {
         Route::get('', 'ProfileController@index')->name('profile.index');
-        Route::prefix('twofactorauth')->group(function () {
+        Route::prefix('two-factor-auth')->group(function () {
             Route::get('', 'TwoFactorAuthController@showManagmentTwoFactorView')->name('management.2fa.view');
             Route::post('', 'TwoFactorAuthController@PostManagmentTwoFactorView')->name('management.2fa');
             Route::get('/code', 'TwoFactorAuthController@getViewVerifyCode')->name('management.2fa.view.code');
