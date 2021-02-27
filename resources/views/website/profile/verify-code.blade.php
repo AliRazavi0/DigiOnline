@@ -14,9 +14,11 @@
                     <div class="message-light">
                         <div class="massege-light-send">
                             برای شماره همراه {{$mobile}} کد تایید ارسال گردید
-
+                            <div class="form-edit-number">
+                                <a href="{{route('management.2fa.view')}}" class="edit-number-link">ویرایش شماره</a>
+                            </div>
                         </div>
-                        <form action="{{route('auth.verify.code')}}" method="POST">
+                        <form action="{{route('management.2fa.code')}}" method="POST">
                             @csrf
                             <div class="account-box-verify-content">
                                 <div class="form-account">

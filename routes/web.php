@@ -30,6 +30,10 @@ Route::get('/test', function () {
 
 
 Route::prefix('auth')->namespace('Auth')->group(function () {
+    Route::prefix('verify')->group(function (){
+        Route::get('','VerifyCodeController@getVerifyCode')->name('auth.verify.code.view');
+        Route::post('','VerifyCodeController@postVerifyCode')->name('auth.verify.code');
+    });
     Route::prefix('google')->group(function () {
         Route::get('', 'GoogleController@redirect')->name('google.auth');
         Route::get('callback', 'GoogleController@callback')->name('google.callback');

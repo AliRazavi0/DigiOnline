@@ -49,7 +49,7 @@ class TwoFactorAuthController extends Controller
             return redirect(route('management.2fa.view'));
         }
         session()->reflash();
-        return view('auth.verify-code')->with('mobile', session()->get('mobile'));
+        return view('website.profile.verify-code')->with('mobile', session()->get('mobile'));
     }
 
     public function postVerifyCode(Request $request)

@@ -44,4 +44,10 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+    public function hasEnableTowFactorAuth()
+    {
+        return $this->type !== 'off';
+    }
+
+
 }

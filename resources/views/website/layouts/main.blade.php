@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
-    <title>profile</title>
+    <title>
+        @yield('title')
+    </title>
 
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
+    @yield('css')
 </head>
 <body>
 <!--header------------------------------------->
@@ -32,4 +35,6 @@
 
 <script src="{{asset('/js/main.js')}}"></script>
 <script src="{{asset('/js/app.js')}}"></script>
+@include('sweet::alert')
+@yield('javascript')
 </html>
