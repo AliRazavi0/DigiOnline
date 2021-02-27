@@ -22,7 +22,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, TwoFactorAuth;
 
     /**
      * Where to redirect users after login.
@@ -43,25 +43,6 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->hasEnableTowFactorAuth()) {
-            Auth::logout();
-            session()->flash('auth', [
-                'user_id' => $user->id,
-                'type' => false,
-                'mobile' => $user->mobile,
-                'remember' => $request->has('remember')
-            ]);
-
-            if ($user->type === 'sms') {
-                $code = Code::generateCode($user);
-                alert()->success("کد شما برابر است با : $code")->persistent('بسیار خب ');
-                session()->push('auth', [
-                    'type' => 'sms'
-                ]);
-
-                return redirect(route("auth.verify.code.view"));
-            }
-        }
-        return false;
+        return $this->loggind($request, $user);
     }
 }

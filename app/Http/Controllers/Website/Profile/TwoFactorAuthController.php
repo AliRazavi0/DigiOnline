@@ -76,7 +76,7 @@ class TwoFactorAuthController extends Controller
     {
         return $request->validate([
             'type' => 'required|in:off,sms',
-            'mobile' => 'required_unless:type,off'
+            'mobile' => 'required_unless:type,off|unique:users,mobile'
         ]);
     }
 
